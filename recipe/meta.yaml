@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/gjf-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/gjf-{{ version }}.tar.gz
   sha256: 2f3d141a64d4fa655bd1a5e79ed79c4304f658520f649594af5d25fa5eade523
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - gjf = gjf.cli:main
@@ -20,12 +20,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - click
     - geojson
     - geojson-rewind
-    - python >=3.6
+    - python >={{ python_min }}
     - shapely >=1.8
 
 test:
@@ -36,6 +36,7 @@ test:
     - gjf --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/yazeed44/gjf
